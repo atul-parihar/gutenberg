@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url('/src/assets/icons/Pattern.svg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Arial', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
