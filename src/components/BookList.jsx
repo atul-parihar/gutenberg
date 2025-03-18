@@ -7,7 +7,7 @@ import './BookList.css';
 export default function BookList({ topic, search }) {
     const observer = useRef();
 
-    const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+    const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery({
         queryKey: ['books', topic, search],
         queryFn: ({ pageParam = 1 }) => fetchBooks({ pageParam, topic, search }),
         getNextPageParam: (lastPage) =>
@@ -26,6 +26,7 @@ export default function BookList({ topic, search }) {
 
     return (
         <div className="book-list">
+            {isLoading && <p className="loading">Loading books...</p>}
             {data?.pages.map((page) =>
                 page.results.map((book, index) => (
                     <div key={book.id} ref={index === page.results.length - 1 ? lastBookRef : null}>
@@ -33,7 +34,8 @@ export default function BookList({ topic, search }) {
                     </div>
                 ))
             )}
-            {!hasNextPage && <p className="no-more-books">Loading...</p>}
+            {isFetchingNextPage && <p className="loading">Loading more books...</p>}
+            {!hasNextPage && !isLoading && <p className="no-more-books">No More Books</p>}
         </div>
     );
 }

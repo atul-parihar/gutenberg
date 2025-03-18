@@ -11,5 +11,11 @@ export const fetchBooks = async ({ pageParam = 1, search = '', topic = '' }) => 
       page: pageParam,
     },
   });
-  return res.data;
+
+  // Filtering out zip files
+  const filteredResults = res.data.results.filter(
+    (book) => book.mime_type !== 'application/zip'
+  );
+
+  return { ...res.data, results: filteredResults };
 };

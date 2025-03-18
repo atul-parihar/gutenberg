@@ -32,6 +32,10 @@
     text-align: center;
 }
 
+.loading {
+    font-size: 40px;
+}
+
 .no-more-books {
     font-size: 40px;
 }
