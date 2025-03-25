@@ -5,6 +5,7 @@ import BookCard from './BookCard';
 import './BookList.css';
 
 export default function BookList({ topic, search }) {
+    // create reference for infinite scroll
     const observer = useRef();
 
     const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery({

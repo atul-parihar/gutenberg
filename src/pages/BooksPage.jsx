@@ -5,6 +5,7 @@ import CancelIcon from '../assets/icons/Cancel.svg';
 import SearchIcon from '../assets/icons/Search.svg';
 import BookList from '../components/BookList';
 import './BooksPage.css';
+import useDebounce from '../hooks/useDebounce';
 
 export default function BooksPage() {
     const [searchParams] = useSearchParams();
@@ -12,6 +13,17 @@ export default function BooksPage() {
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
     const handleClear = () => setSearch('');
+
+    const debouncedSearchInput = useDebounce(search, 1000);
+
+    const debouncedSearch = ()=>{
+        let timer;
+
+        return (value) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => setSearch(value), 500);
+        }
+    }
 
     const handleBack = () => {
         navigate("/");
@@ -39,7 +51,7 @@ export default function BooksPage() {
                     </button>
                 )}
             </div>
-            <BookList topic={topic} search={search} />
+            <BookList topic={topic} search={debouncedSearchInput} />
         </div>
     );
 }
