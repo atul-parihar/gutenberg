@@ -16,15 +16,6 @@ export default function BooksPage() {
 
     const debouncedSearchInput = useDebounce(search, 1000);
 
-    const debouncedSearch = ()=>{
-        let timer;
-
-        return (value) => {
-            clearTimeout(timer);
-            timer = setTimeout(() => setSearch(value), 500);
-        }
-    }
-
     const handleBack = () => {
         navigate("/");
     }
